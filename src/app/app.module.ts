@@ -8,19 +8,17 @@ import { AppRoutingModule } from './app-routing.module'; // Ensure this import i
 import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
-import { HeaderComponent } from './header/header.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    UserDetailComponent,
-    HeaderComponent // Make sure AppHeaderComponent is declared here
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule ,// Ensure AppRoutingModule is imported here
-  
+    AppRoutingModule // Ensure AppRoutingModule is imported here
   ],
   providers: [],
   bootstrap: [AppComponent]

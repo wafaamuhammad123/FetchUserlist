@@ -1,6 +1,6 @@
 <!-- src/app/components/user-list/user-list.component.html -->
 <div class="user-list-container">
-  <div class="user-card" *ngFor="let user of users" (click)="navigateToUserDetails(user.id)">
+  <div class="user-card" *ngFor="let user of users" [routerLink]="['/users', user.id]">
     <div class="user-card-content">
       <img [src]="user.avatar" alt="{{ user.first_name }} {{ user.last_name }}">
       <p>{{ user.first_name }} {{ user.last_name }}</p>
