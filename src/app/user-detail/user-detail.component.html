@@ -1,0 +1,11 @@
+<!-- src/app/components/user-detail/user-detail.component.html -->
+<div class="user-detail-container" *ngIf="user">
+    <h2>User Detail</h2>
+    <div class="user-card">
+      <img [src]="user.avatar" alt="{{ user.first_name }} {{ user.last_name }}">
+      <p>{{ user.first_name }} {{ user.last_name }}</p>
+      <p>ID: {{ user.id }}</p>
+      <p>Email: {{ user.email }}</p>
+    </div>
+  </div>
+  
