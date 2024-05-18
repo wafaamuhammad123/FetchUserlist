@@ -1,5 +1,8 @@
 // src/app/components/header/header.component.ts
-import { Component, EventEmitter, Output } from '@angular/core';
+
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +10,28 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  @Output() search = new EventEmitter<number>();
+  constructor(private router: Router, private userService: UserService) {}
 
-  onSearch(value: string) {
-    const id = Number(value);
+  onSearch(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const userId = inputElement.value.trim(); // trim whitespace
+
+    if (!userId) {
+      // handle empty input case
+      return;
+    }
+
+    const id = parseInt(userId, 10);
     if (!isNaN(id)) {
-      this.search.emit(id);
+      this.userService.getUserById(id).subscribe(user => {
+        if (user) {
+          this.router.navigate(['/users', user.id]);
+        } else {
+          alert('User not found');
+        }
+      }, () => {
+        alert('User not found');
+      });
     }
   }
 }

@@ -1,5 +1,7 @@
 <!-- src/app/components/header/header.component.html -->
 <header>
-  <h1>User List</h1>
-
+  <nav>
+    <a routerLink="/users">User List</a>
+    <input type="text" placeholder="Search by user ID" (input)="onSearch($event)">
+  </nav>
 </header>

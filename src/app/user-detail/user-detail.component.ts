@@ -3,8 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
-import { Location } from '@angular/common';
-import { NgxSpinnerService } from "ngx-spinner";
+import { Location } from '@angular/common'; // Import Location service
 
 @Component({
   selector: 'app-user-detail',
@@ -17,24 +16,19 @@ export class UserDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private location: Location,
-    private spinner: NgxSpinnerService
+    private location: Location // Inject Location service
   ) { }
 
   ngOnInit(): void {
-    this.spinner.show(); // Show spinner
     this.route.params.subscribe(params => {
       const userId = +params['id'];
       this.userService.getUserById(userId).subscribe(user => {
         this.user = user;
-        this.spinner.hide(); // Hide spinner
-      }, () => {
-        this.spinner.hide(); // Hide spinner on error
       });
     });
   }
 
   goBack(): void {
-    this.location.back();
+    this.location.back(); // Use the Location service to navigate back
   }
 }
