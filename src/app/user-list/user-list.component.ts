@@ -1,5 +1,3 @@
-// src/app/components/user-list/user-list.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
@@ -13,6 +11,7 @@ export class UserListComponent implements OnInit {
   users: any[] = [];
   currentPage: number = 1;
   totalPages: number = 1;
+  isLoading: boolean = true;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -24,6 +23,10 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers(this.currentPage).subscribe(response => {
       this.users = response.data;
       this.totalPages = response.total_pages;
+      this.isLoading = false;
+    }, error => {
+      this.isLoading = false;
+      console.error(error);
     });
   }
 

@@ -1,4 +1,4 @@
-<!-- src/app/components/user-list/user-list.component.html -->
+<app-spinner [isLoading]="isLoading"></app-spinner>
 <div class="user-list-container">
   <div class="user-card" *ngFor="let user of users" (click)="navigateToUserDetails(user.id)">
     <div class="user-card-content">
